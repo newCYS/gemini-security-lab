@@ -1,4 +1,4 @@
-﻿name: AI Issue Triage
+name: Gemini Issue Triage
 on:
   issues:
     types: [opened]
@@ -11,12 +11,11 @@ jobs:
       issues: write
     steps:
       - name: Run Gemini CLI
-        uses: google-github-actions/run-gemini-cli@v1
+        # 🚩 FIX: Switch to a verified tag
+        uses: google-github-actions/run-gemini-cli@v0.1.20 
         with:
-          # 🚩 VULNERABILITY: User input is injected directly
           prompt: |
-            Analyze this issue and suggest a fix.
+            Triage this issue.
             Title: "${{ github.event.issue.title }}"
             Body: "${{ github.event.issue.body }}"
-          # You'll add this secret in the next step
           google_api_key: ${{ secrets.GEMINI_API_KEY }}

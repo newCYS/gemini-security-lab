@@ -11,11 +11,11 @@ jobs:
       issues: write
     steps:
       - name: Run Gemini CLI
-        # 🚩 FIX: Switch to a verified tag
-        uses: google-github-actions/run-gemini-cli@v0.1.20 
+        # 🚩 FIX: Use the specific 2026 stable tag
+        uses: google-github-actions/run-gemini-cli@v0.32.0
         with:
           prompt: |
-            Triage this issue.
+            Analyze and triage this issue:
             Title: "${{ github.event.issue.title }}"
             Body: "${{ github.event.issue.body }}"
           google_api_key: ${{ secrets.GEMINI_API_KEY }}

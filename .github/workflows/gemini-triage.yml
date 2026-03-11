@@ -14,9 +14,9 @@ jobs:
         uses: google-github-actions/run-gemini-cli@v0.1.21
         with:
           gemini_cli_version: 0.32.1
-          gemini_debug: true
-          # 🚩 ADD THIS LINE:
+          # 🚩 THIS IS THE MISSING LINK:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }} 
+          gemini_debug: true
           prompt: |
             You are a triage agent. Analyze this issue:
             Title: "${{ github.event.issue.title }}"

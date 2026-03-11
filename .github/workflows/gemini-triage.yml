@@ -9,16 +9,15 @@ jobs:
     permissions:
       contents: write
       issues: write
-    steps:
+   steps:
       - name: Run Gemini CLI
-        # 🚩 FIX: Use the specific March 2026 marketplace tag
         uses: google-github-actions/run-gemini-cli@v0.1.21
         with:
-          # Use the latest stable CLI version inside the action
-          gemini_cli_version: '0.32.1'
+          gemini_cli_version: 0.32.1
           gemini_debug: true
+          # 🚩 ADD THIS LINE:
+          gemini_api_key: ${{ secrets.GEMINI_API_KEY }} 
           prompt: |
             You are a triage agent. Analyze this issue:
             Title: "${{ github.event.issue.title }}"
             Body: "${{ github.event.issue.body }}"
-          google_api_key: ${{ secrets.GEMINI_API_KEY }}

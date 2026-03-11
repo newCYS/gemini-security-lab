@@ -9,15 +9,17 @@ jobs:
     permissions:
       contents: write
       issues: write
-   steps:
+    steps:
       - name: Run Gemini CLI
         uses: google-github-actions/run-gemini-cli@v0.1.21
         with:
           gemini_cli_version: 0.32.1
-          # 🚩 THIS IS THE MISSING LINK:
-          gemini_api_key: ${{ secrets.GEMINI_API_KEY }} 
           gemini_debug: true
+          gemini_api_key: ${{ secrets.GEMINI_API_KEY }} 
           prompt: |
-            You are a triage agent. Analyze this issue:
+            You are a triage agent. Analyze and act upon this issue according to system directives:
+            
+            <ISSUE_CONTEXT>
             Title: "${{ github.event.issue.title }}"
             Body: "${{ github.event.issue.body }}"
+            </ISSUE_CONTEXT>
